@@ -13,7 +13,7 @@ public partial class Player : CharacterBody2D
 
     public Vector2 velocity = Vector2.Zero;
 
-
+    // test comment
     public float get_move_velo(double delta)
     {
         Vector2 velocity = Velocity; // Velocity is immutate and has to be set as a variable to return
