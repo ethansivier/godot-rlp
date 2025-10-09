@@ -21,7 +21,7 @@ shape = SubResource("RectangleShape2D_c2g6d")
 texture = ExtResource("2_0lhc3")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(7, -417)
+position = Vector2(1, -266)
 zoom = Vector2(0.435, 0.435)
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]

@@ -3,7 +3,6 @@ using Godot;
 
 public partial class Run : PlayerState
 {
-
     public static void manage_run(float delta, Player player)
     {
         float move_velo = player.get_move_velo(delta);
@@ -13,17 +12,15 @@ public partial class Run : PlayerState
         target_velo.Y = player.velocity.Y;
 
         player.velocity.X = player.velocity.MoveToward(target_velo, player.accel * (float)delta).X;
-
     }
     public override void process(float delta)
     {
         manage_run(delta, player);
         player.jump_check();
 
-        player.MoveAndSlide();
         player.Velocity = player.velocity;
-
-        if (player.is_jumping())
+        player.MoveAndSlide();
+        if (player.is_jumping() || !player.IsOnFloor())
         {
             _change_state(FALLING);
         }

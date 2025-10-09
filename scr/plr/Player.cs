@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 
 public partial class Player : CharacterBody2D
 {
-    public float accel = 3000;
-    public float decel = 2000;
-    public int max_velo = 1000; // mathing seems to make it so that the max is actually this divided by two? maybe fix but also its probably ok
+    public float accel = 12000;
+    public float decel = 4000;
+    public int max_velo = 2000; // mathing seems to make it so that the max is actually this divided by two? maybe fix but also its probably ok
 
     public float gravity_max = 1000;
     public float gravity_inc = -10000;
-    public float jump_power = 2000;
+    public float jump_power = 3000;
 
     public bool can_jump = false;
     public int jump_count = 0;
@@ -26,7 +26,7 @@ public partial class Player : CharacterBody2D
         Vector2 new_velo = velocity;
 
         float x = Input.GetAxis("left", "right");
-        float accel_speed = x * accel;
+
         float wish_speed = (max_velo * x) - velocity.X;
         float accel_inc = decel;
 
@@ -40,9 +40,10 @@ public partial class Player : CharacterBody2D
             new_velo.X = 0;
         }
         velocity = velocity.MoveToward(new_velo, accel_inc * (float)delta);
-
+  
         return velocity.X;
     }
+
 
     public bool is_moving()
     {
@@ -53,10 +54,12 @@ public partial class Player : CharacterBody2D
         return true;
     }
 
+
     public bool is_jumping()
     {
         return Input.IsActionJustPressed("jump");
     }
+
 
     public async void jump_check()
     {

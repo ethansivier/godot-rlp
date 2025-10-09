@@ -6,6 +6,7 @@ public partial class Idle : PlayerState
     public override void enter(string previous, Dictionary<object, object> data)
     {
         player.jump_count = 0;
+        player.velocity.Y = 0;
     }
     public override void process(float delta)
     {   
