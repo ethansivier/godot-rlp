@@ -19,12 +19,12 @@ public partial class StateMachine : Node
 
     public void _process(float delta)
     {
-        
-        GD.Print(state.Name, new_state);
+
         if (!(new_state == state.Name))
         {
             _transition_to_next_state(new_state);
         }
+        
         state.process(delta);
     }
 
@@ -39,11 +39,11 @@ public partial class StateMachine : Node
 
     public void _transition_to_next_state(string target, Dictionary<object, object> data = null )
     {
-        GD.Print("change state");
         if (!HasNode(target))
         {
             return;
         }
+        GD.Print("changing");
         string previous_state = state.Name;
         state.exit();
         state = (State)GetNode(target);

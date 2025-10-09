@@ -18,7 +18,7 @@ public partial class State : Node
         ;
     }
 
-    public void enter(string previous_state, Dictionary<object, object> data)
+    public virtual void enter(string previous_state, Dictionary<object, object> data)
     {
         ;
     }

@@ -1,15 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://b4wrg2imimdu6"]
+[gd_scene load_steps=8 format=3 uid="uid://b4wrg2imimdu6"]
 
 [ext_resource type="Script" uid="uid://hjspjaemlr5h" path="res://scr/plr/Player.cs" id="1_2mxl0"]
 [ext_resource type="Texture2D" uid="uid://5pykm7giuwff" path="res://icon.svg" id="2_0lhc3"]
 [ext_resource type="Script" uid="uid://8e5v8vavtkav" path="res://scr/util/StateMachine.cs" id="2_c2g6d"]
 [ext_resource type="Script" uid="uid://ct8a2aahsinay" path="res://scr/plr/states/Run.cs" id="3_c2g6d"]
 [ext_resource type="Script" uid="uid://dok62kwri5nbj" path="res://scr/plr/states/Idle.cs" id="4_2mxl0"]
+[ext_resource type="Script" uid="uid://cjygjg5pwy1yj" path="res://scr/plr/states/Falling.cs" id="6_cp87o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c2g6d"]
 size = Vector2(128, 128)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+position = Vector2(54, 27)
 script = ExtResource("1_2mxl0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -33,3 +35,6 @@ initial_state = NodePath(".")
 [node name="Run" type="Node" parent="StateMachine" node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_c2g6d")
 initial_state = NodePath(".")
+
+[node name="Falling" type="Node" parent="StateMachine"]
+script = ExtResource("6_cp87o")

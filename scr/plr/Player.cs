@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 public partial class Player : CharacterBody2D
 {
@@ -10,6 +12,10 @@ public partial class Player : CharacterBody2D
     public float gravity_max = 1000;
     public float gravity_inc = -10000;
     public float jump_power = 2000;
+
+    public bool can_jump = false;
+    public int jump_count = 0;
+    public int max_jump = 1;
 
     public Vector2 velocity = Vector2.Zero;
 
@@ -47,4 +53,22 @@ public partial class Player : CharacterBody2D
         return true;
     }
 
+    public bool is_jumping()
+    {
+        return Input.IsActionJustPressed("jump");
+    }
+
+    public async void jump_check()
+    {
+        if (is_jumping() && !can_jump)
+        {
+            can_jump = true;
+            await Task.Delay(600);
+            if (can_jump == true)
+            {
+                GD.Print("flip");
+                can_jump = false;
+            }
+        }
+    }
 }
