@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxm6q8q0y1h10"]
+
+[ext_resource type="Script" uid="uid://3n8d8gls5775" path="res://scr/plr/powerup_states/Dash.cs" id="1_303w8"]
+
+[node name="Dash" type="Node"]
+script = ExtResource("1_303w8")

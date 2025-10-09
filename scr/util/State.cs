@@ -7,6 +7,7 @@ public partial class State : Node
 {
     [Export] public State initial_state = null;
     public State state = null;
+	public int priority = 1;
 
     public void _change_state(string name)
     {

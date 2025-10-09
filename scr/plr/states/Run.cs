@@ -16,7 +16,7 @@ public partial class Run : PlayerState
     public override void process(float delta)
     {
         manage_run(delta, player);
-        player.jump_check();
+        Falling.jump_check(player);
 
         player.Velocity = player.velocity;
         player.MoveAndSlide();

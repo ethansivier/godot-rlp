@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b4wrg2imimdu6"]
+[gd_scene load_steps=9 format=3 uid="uid://b4wrg2imimdu6"]
 
 [ext_resource type="Script" uid="uid://hjspjaemlr5h" path="res://scr/plr/Player.cs" id="1_2mxl0"]
 [ext_resource type="Texture2D" uid="uid://5pykm7giuwff" path="res://icon.svg" id="2_0lhc3"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://ct8a2aahsinay" path="res://scr/plr/states/Run.cs" id="3_c2g6d"]
 [ext_resource type="Script" uid="uid://dok62kwri5nbj" path="res://scr/plr/states/Idle.cs" id="4_2mxl0"]
 [ext_resource type="Script" uid="uid://cjygjg5pwy1yj" path="res://scr/plr/states/Falling.cs" id="6_cp87o"]
+[ext_resource type="PackedScene" uid="uid://bxm6q8q0y1h10" path="res://ents/powerup_nodes/dash.tscn" id="7_24i15"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c2g6d"]
 size = Vector2(128, 128)
@@ -24,9 +25,10 @@ texture = ExtResource("2_0lhc3")
 position = Vector2(1, -266)
 zoom = Vector2(0.435, 0.435)
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "powerups")]
 script = ExtResource("2_c2g6d")
 initial_state = NodePath("Idle")
+powerups = NodePath("action_shift")
 
 [node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("initial_state")]
 script = ExtResource("4_2mxl0")
@@ -38,3 +40,7 @@ initial_state = NodePath(".")
 
 [node name="Falling" type="Node" parent="StateMachine"]
 script = ExtResource("6_cp87o")
+
+[node name="action_shift" type="Node" parent="StateMachine"]
+
+[node name="Dash" parent="StateMachine/action_shift" instance=ExtResource("7_24i15")]

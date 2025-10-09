@@ -18,6 +18,7 @@ public partial class Player : CharacterBody2D
     public int max_jump = 1;
 
     public Vector2 velocity = Vector2.Zero;
+    public float move_dir = 1;
 
     // test comment
     public float get_move_velo(double delta)
@@ -39,8 +40,14 @@ public partial class Player : CharacterBody2D
         {
             new_velo.X = 0;
         }
+
+        if (x != 0)
+        {
+            move_dir = (float) Math.Floor(x); //absolute so it cant be decimal
+        }
+        
         velocity = velocity.MoveToward(new_velo, accel_inc * (float)delta);
-  
+       
         return velocity.X;
     }
 
@@ -61,17 +68,5 @@ public partial class Player : CharacterBody2D
     }
 
 
-    public async void jump_check()
-    {
-        if (is_jumping() && !can_jump)
-        {
-            can_jump = true;
-            await Task.Delay(600);
-            if (can_jump == true)
-            {
-                GD.Print("flip");
-                can_jump = false;
-            }
-        }
-    }
+
 }

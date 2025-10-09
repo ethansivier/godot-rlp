@@ -1,9 +1,10 @@
 using Godot;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+
 
 public partial class Falling : PlayerState
 {
-
     public override void enter(string previous, Dictionary<object, object> data)
     {
         if (player.can_jump)
@@ -20,6 +21,19 @@ public partial class Falling : PlayerState
         player.can_jump = false;
     }
 
+    public static async void jump_check(Player player)
+    {
+        if (player.is_jumping() && !player.can_jump)
+        {
+            player.can_jump = true;
+            await Task.Delay(600);
+            if (player.can_jump == true)
+            {
+                player.can_jump = false;
+            }
+        }
+    }
+
     public void headhit()
     {
         if (player.IsOnCeiling())
@@ -31,7 +45,7 @@ public partial class Falling : PlayerState
     public override void process(float delta)
     {
         player.velocity.Y -= player.gravity_inc * (float) delta;
-        player.jump_check();
+        jump_check(player);
         headhit();
 
         Run.manage_run(delta, player);
